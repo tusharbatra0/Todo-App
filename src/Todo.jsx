@@ -1,18 +1,23 @@
 import { useState } from "react";
 
 function Todo(){
-   const [inputValue , setinputValue] = useState("Tushar")
+   const [inputValue , setInputValue] = useState("")
    const [todos, setTodos] = useState([]);
+   const [isEdit, setIsEdit] = useState({
+    id: null,
+    status: false,
+  });
    console.log(todos)
 
 // Input Change
    function handleChange(e){
-    setinputValue(e.target.value)
+    setInputValue(e.target.value)
    }
 
-//    SetTodo
+//    ADD TODO
 function addTodo(value) {
-    setTodos((prev) => {
+    if(inputValue!="")
+   { setTodos((prev) => {
       return [
         ...prev,
         {
@@ -21,14 +26,12 @@ function addTodo(value) {
         },
       ];
     });
+    setInputValue("")}
   }
   
 //   Delete Todo
-function DeleteTodo(id) {
-    const todo = todos.find((item) => item.id === id);
-    console.log(todo);
-    const index = todos.indexOf(todo);
-    console.log(index);
+  function DeleteTodo(index) {
+   
 
     const newArray = [...todos];
     
@@ -37,30 +40,74 @@ function DeleteTodo(id) {
     setTodos(newArray);
   }
 
+// Update Todo
+ function updateTodo(){
+ const value = todos.find((item)=> item.id === isEdit.id);
+ const index = todos.indexOf(value);
+ const newArray = [...todos];
+ newArray[index].todo = inputValue  ;
+ setTodos(newArray);
+ setIsEdit({
+    id: null,
+    status: false,
+  })
+
+ }
+
+
+
+// Edit Todo
+  function EditTodo(index) {
+    console.log(todos[index]);
+    setInputValue(todos[index].todo);
+    setIsEdit({
+      id: todos[index].id,
+      status: true,
+    });
+  }
+
 
 
 
     return (
         <>
-        <div className="container">
-         <input className="input" value={inputValue} onChange={handleChange} type="text" placeholder="Enter Your Todo"/>
-         <button className="button" onClick={() => addTodo(inputValue)}>Add Todo🖊️</button>
-         </div>
 
-         <ol>
-         {todos.map((item, index) => {
-          return (
-            <li key={index}>
-              {item.todo} 
 
-              {/* Delete todo left */}
-              <span className="cursor-pointer" onClick={() => DeleteTodo(item.id)}>🗑️</span>
-            </li>
-          );
-        })}
-         </ol>
-        </>
-      )
+<div className="flex gap-2 ">
+
+
+<input type="text"
+ value={inputValue}
+className="border-2 border-black mr-2"   placeholder="Enter Your Todo"
+onChange={handleChange}
+/>
+
+{isEdit.status === false ? (
+<button onClick={() => addTodo(inputValue)}>Add todo </button>
+) : 
+(
+<button onClick={() => updateTodo(inputValue)}>Update todo </button>
+)}
+</div>
+
+<ul className="list-decimal">
+
+{todos.map((item, index) => {
+ return (
+<li key={index}>
+ {item.todo} 
+
+ 
+             
+<span onClick={() => EditTodo(index)}>✏️</span>
+<span className="cursor-pointer" onClick={() => DeleteTodo(index)}>🗑️</span>
+</li>
+
+);
+})}
+</ul>
+  </>
+)
 }
 
 export default Todo
