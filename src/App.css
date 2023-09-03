@@ -50,6 +50,9 @@
   background-color: #3498db;
   color: white;
 }
+.input{
+  border: 1px solid black;
+}
 .card {
   padding: 2em;
 }
