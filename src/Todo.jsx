@@ -121,8 +121,10 @@ onClick={() => addTodo(inputValue)}>Add todo ➕ </button>
 );
 })}
 </ul>
-</div>
 
+</div>
+<button className="rounded-2xl mt-2 w-full text-xl"
+ onClick={()=>{setTodos([])}}>Clear All❌</button>
 </div>
   </>
 )
