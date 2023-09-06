@@ -72,25 +72,28 @@ function addTodo(value) {
     return (
         <>
 
+{/* Main Container */}
+<div>
+
 {/* input and button container */}
 <div className="flex flex-col gap-2 item-center justify-center ">
 
-<h2 className="text-white text-2xl">Todo App by Tushar Batra</h2>
+<h2 className="text-white text-2xl">Note App by Tushar Batra</h2>
 
 <div className="flex justify-center item-center">
 <input type="text"
  value={inputValue}
-className=" mr-2 p-2 rounded-2xl"   placeholder="Enter Your Todo"
+ className=" mr-2 p-2 rounded-2xl"   placeholder="Enter Your Todo"
 onChange={handleChange}
 />
 
 {isEdit.status === false ? (
 <button className="rounded-2xl" 
-onClick={() => addTodo(inputValue)}>Add todo </button>
+onClick={() => addTodo(inputValue)}>Add todo ➕ </button>
 ) : 
 (
 <button className="rounded-2xl"
- onClick={() => updateTodo(inputValue)}>Update todo </button>
+ onClick={() => updateTodo(inputValue)}>Update todo ➕</button>
 )}
 </div>
 </div>
@@ -118,6 +121,8 @@ onClick={() => addTodo(inputValue)}>Add todo </button>
 );
 })}
 </ul>
+</div>
+
 </div>
   </>
 )
