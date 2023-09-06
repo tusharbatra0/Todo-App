@@ -51,7 +51,7 @@ function addTodo(value) {
     id: null,
     status: false,
   })
-
+  setInputValue("")
  }
 
 
@@ -72,40 +72,53 @@ function addTodo(value) {
     return (
         <>
 
+{/* input and button container */}
+<div className="flex flex-col gap-2 item-center justify-center ">
 
-<div className="flex gap-2 ">
+<h2 className="text-white text-2xl">Todo App by Tushar Batra</h2>
 
-
+<div className="flex justify-center item-center">
 <input type="text"
  value={inputValue}
-className="border-2 border-black mr-2"   placeholder="Enter Your Todo"
+className=" mr-2 p-2 rounded-2xl"   placeholder="Enter Your Todo"
 onChange={handleChange}
 />
 
 {isEdit.status === false ? (
-<button onClick={() => addTodo(inputValue)}>Add todo </button>
+<button className="rounded-2xl" 
+onClick={() => addTodo(inputValue)}>Add todo </button>
 ) : 
 (
-<button onClick={() => updateTodo(inputValue)}>Update todo </button>
+<button className="rounded-2xl"
+ onClick={() => updateTodo(inputValue)}>Update todo </button>
 )}
 </div>
+</div>
 
-<ul className="list-decimal">
+
+{/* TODO CONTAINER */}
+
+<div className="bg-white mt-2 flex justify-center rounded-2xl  gap-2">
+
+<ul className="list-decimal flex flex-col gap-2 justify-between ">
 
 {todos.map((item, index) => {
  return (
-<li key={index}>
- {item.todo} 
-
+<li className="text-xl pl-2 p-2 flex item-center justify-between"
  
-             
-<span onClick={() => EditTodo(index)}>✏️</span>
+ key={index}>
+{item.todo}
+<div className="pl-12">
+<span className="cursor-pointer " onClick={() => EditTodo(index)}>✏️</span>
+
 <span className="cursor-pointer" onClick={() => DeleteTodo(index)}>🗑️</span>
+</div>
 </li>
 
 );
 })}
 </ul>
+</div>
   </>
 )
 }
