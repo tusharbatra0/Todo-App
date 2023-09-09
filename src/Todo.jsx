@@ -73,17 +73,17 @@ function addTodo(value) {
         <>
 
 {/* Main Container */}
-<div>
+<div className="flex gap-4 flex-col justify-center items-center mt-8">
 
 {/* input and button container */}
-<div className="flex flex-col gap-2 item-center justify-center ">
+<div className="flex flex-col gap-8 items-center ">
 
-<h2 className="text-white text-2xl">Note App by Tushar Batra</h2>
+<h2 className="text-white text-4xl">Note App by Tushar Batra</h2>
 
-<div className="flex justify-center item-center">
+<div className="flex  gap-4">
 <input type="text"
  value={inputValue}
- className=" mr-2 p-2 rounded-2xl"   placeholder="Enter Your Todo"
+ className=" mr-2 p-4 rounded-2xl"   placeholder="Enter Your Todo"
 onChange={handleChange}
 />
 
@@ -92,7 +92,7 @@ onChange={handleChange}
 onClick={() => addTodo(inputValue)}>Add todo ➕ </button>
 ) : 
 (
-<button className="rounded-2xl"
+<button className="bg-[#2569f6] rounded-2xl"
  onClick={() => updateTodo(inputValue)}>Update todo ➕</button>
 )}
 </div>
@@ -101,13 +101,14 @@ onClick={() => addTodo(inputValue)}>Add todo ➕ </button>
 
 {/* TODO CONTAINER */}
 
-<div className="bg-white mt-2 flex justify-center rounded-2xl  gap-2">
 
-<ul className="list-decimal flex flex-col gap-2 justify-between ">
+<div className="bg-white mt-2 flex justify-center rounded-2xl gap-2 ">
+
+<ul className=" bg-[#bee5fd] flex flex-col gap-2 justify-between  ">
 
 {todos.map((item, index) => {
  return (
-<li className="text-xl pl-2 p-2 flex item-center justify-between"
+<li className="p-4 text-2xl pl-2 p-2 flex item-center justify-between"
  
  key={index}>
 {item.todo}
